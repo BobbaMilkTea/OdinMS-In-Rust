@@ -1,6 +1,6 @@
 # OdinMS In Rust
 ![](banner.png)  
-The OdinMS emulator translated to [Rust](https://doc.rust-lang.org/book/title-page.html), a robust systems programming language.
+The OdinMS emulator translated to [Rust](https://doc.rust-lang.org/book/title-page.html).
 
 Rust is a multi-paradigm low-level systems programming language.  
 It is compiled into machine code, much like C++.
