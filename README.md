@@ -8,8 +8,8 @@ It is compiled into machine code, much like C++.
 Unlike C++, however, Rust
 - is not strictly OOP, but has OOP-like features
 - enforces mutability, locks and ownership to ensure multithreading safety
-- separates null and non-null types to avoid mistreatment of pointers
-- checks for ownership access to manage memory without resorting to garbage collection
+- separates null and non-null types to avoid mistreatment of variables
+- checks for ownership to manage memory without resorting to garbage collection
 - assists with library management using modules, crates and a package manager
 
 Translation ratio: 
@@ -17,8 +17,8 @@ Translation ratio:
 
 Translation progress:  
 Java: 251  
-Rust: 1  
-![](https://progress-bar.dev/0)
+Rust: 2  
+![](https://progress-bar.dev/1)
 
 Linux command to check number of Java files:  
 ```
@@ -29,3 +29,8 @@ Linux command to check number of Rust files:
 ```
 ls -lR * | grep --count \.rs$
 ```
+
+Java implementation | Rust implementation
+---  | ---    
+class implement interface | struct implement trait
+check whether variable is null   | match Option type variable and unwrap()
