@@ -17,7 +17,7 @@ Translation ratio:
 
 Translation progress:  
 Java: 251  
-Rust: 2  
+Rust: 4  
 ![](https://progress-bar.dev/1)
 
 Linux command to check number of Java files:  

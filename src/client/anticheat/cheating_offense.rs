@@ -76,42 +76,6 @@ impl CheatingOffense {
     pub fn is_enabled(&self) -> bool {
         self.enabled
     }
-
-    pub fn new(offense_type: COType) -> CheatingOffense {
-        match offense_type {
-            COType::FastAttack             => cheating_offense_three(offense_type, 1, 60000, 500),
-            COType::FastMpRegen            => cheating_offense_three(offense_type, 1, 60000, 500),
-            COType::HighDamage             => cheating_offense_two(offense_type, 10, 300000),
-            COType::AttackFarAwayMonster   => cheating_offense_one(offense_type, 5),
-            COType::RegenHighHp            => cheating_offense_one(offense_type, 50),
-            COType::ItemVac                => cheating_offense_one(offense_type, 5),
-            COType::ShortItemVac           => cheating_offense_one(offense_type, 2),
-            COType::UsingFarAwayPortal     => cheating_offense_two(offense_type, 30, 300000),
-            COType::FastTakeDamage         => cheating_offense_three(offense_type, 1, 60000, 500),
-            COType::FastMove               => cheating_offense_four(offense_type, 1, 60000, -1, false),
-            COType::HighJump               => cheating_offense_four(offense_type, 1, 60000, -1, false),
-            COType::MismatchingBulletCount => cheating_offense_one(offense_type, 50),
-            COType::EtcExplosion           => cheating_offense_two(offense_type, 50, 300000),
-            COType::AttackingWhileDead     => cheating_offense_two(offense_type, 10, 300000),
-            _                              => cheating_offense_zero(offense_type),
-        }
-    }
-    
-    fn cheating_offense_zero(offense_type: COType) -> CheatingOffense {
-        cheating_offense_one(offense_type, 1)
-    }
-    
-    fn cheating_offense_one(offense_type: COType, points: i32) -> CheatingOffense {
-        cheating_offense_two(offense_type, points, 60000)
-    }
-    
-    fn cheating_offense_two(offense_type: COType, points: i32, validity_duration: i64) -> CheatingOffense {
-        cheating_offense_three(offense_type, points, validity_duration, -1)
-    }
-    
-    fn cheating_offense_three(offense_type: COType, points: i32, validity_duration: i64, autobancount: i32) -> CheatingOffense {
-        cheating_offense_four(offense_type, points, validity_duration, autobancount, true)
-    }
     
     fn cheating_offense_four(offense_type: COType, points: i32, validity_duration: i64, autobancount: i32, enabled: bool) -> CheatingOffense {
         CheatingOffense {
@@ -120,6 +84,42 @@ impl CheatingOffense {
             validity_duration,
             autobancount,
             enabled,
+        }
+    }
+
+    fn cheating_offense_three(offense_type: COType, points: i32, validity_duration: i64, autobancount: i32) -> CheatingOffense {
+        Self::cheating_offense_four(offense_type, points, validity_duration, autobancount, true)
+    }
+
+    fn cheating_offense_two(offense_type: COType, points: i32, validity_duration: i64) -> CheatingOffense {
+        Self::cheating_offense_three(offense_type, points, validity_duration, -1)
+    }
+    
+    fn cheating_offense_one(offense_type: COType, points: i32) -> CheatingOffense {
+        Self::cheating_offense_two(offense_type, points, 60000)
+    }
+    
+    fn cheating_offense_zero(offense_type: COType) -> CheatingOffense {
+        Self::cheating_offense_one(offense_type, 1)
+    }
+
+    pub fn new(offense_type: COType) -> CheatingOffense {
+        match offense_type {
+            COType::FastAttack             => Self::cheating_offense_three(offense_type, 1, 60000, 500),
+            COType::FastMpRegen            => Self::cheating_offense_three(offense_type, 1, 60000, 500),
+            COType::HighDamage             => Self::cheating_offense_two(offense_type, 10, 300000),
+            COType::AttackFarAwayMonster   => Self::cheating_offense_one(offense_type, 5),
+            COType::RegenHighHp            => Self::cheating_offense_one(offense_type, 50),
+            COType::ItemVac                => Self::cheating_offense_one(offense_type, 5),
+            COType::ShortItemVac           => Self::cheating_offense_one(offense_type, 2),
+            COType::UsingFarAwayPortal     => Self::cheating_offense_two(offense_type, 30, 300000),
+            COType::FastTakeDamage         => Self::cheating_offense_three(offense_type, 1, 60000, 500),
+            COType::FastMove               => Self::cheating_offense_four(offense_type, 1, 60000, -1, false),
+            COType::HighJump               => Self::cheating_offense_four(offense_type, 1, 60000, -1, false),
+            COType::MismatchingBulletCount => Self::cheating_offense_one(offense_type, 50),
+            COType::EtcExplosion           => Self::cheating_offense_two(offense_type, 50, 300000),
+            COType::AttackingWhileDead     => Self::cheating_offense_two(offense_type, 10, 300000),
+            _                              => Self::cheating_offense_zero(offense_type),
         }
     }
 }
